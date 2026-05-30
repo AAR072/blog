@@ -1,0 +1,73 @@
+baseURL: "https://blog.aliakber.ca/"
+title: "Ali's Blog"
+paginate: 10
+theme: PaperModX
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+enableEmoji: true
+
+params:
+  env: production
+  defaultTheme: auto
+  DateFormat: "2006-01-02"
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocSide: "right"
+  EnableInstantClick: true
+  EnableImageZoom: true
+
+  homeInfoParams:
+    Title: "Hi, I'm Ali"
+    Content: |
+      A cybersecurity enthusiast, researcher, and CTF player.
+
+      These notes are created from my personal experiences and exploration.
+
+  socialIcons:
+    - name: linkedin
+      url: "https://www.linkedin.com/in/aliakber-raza/"
+    - name: email
+      url: "mailto:aliakberraza7@gmail.com"
+    - name: cv
+      url: "/Ali_Raza_resume.pdf"
+
+minify:
+  disableXML: true
+
+menu:
+  main:
+    - name: Research
+      url: /research/
+      weight: 1
+    - name: CTFs
+      url: /ctfs/
+      weight: 2
+
+outputs:
+  home:
+    - HTML
+    - JSON
+  section:
+    - HTML
+  taxonomy:
+    - HTML
+  term:
+    - HTML
+  page:
+    - HTML
+
+taxonomies:
+  tag: tags
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: dracula
+    lineNos: false
+    noClasses: false

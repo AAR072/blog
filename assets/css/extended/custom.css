@@ -1,0 +1,40 @@
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.social-icons a svg {
+    height: 22px;
+    width: 22px;
+}
+
+.social-icons a span {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.social-icons a:not(:last-of-type) {
+    margin-right: 10px;
+}
+
+.social-icons a:hover {
+    box-shadow: none;
+    background: var(--code-bg);
+}
+
+.resume-preview {
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.resume-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}

@@ -1,0 +1,20 @@
+<div class="social-icons">
+    {{- range .icons }}
+    {{- $icon_name := ( trim .name " " | lower )}}
+    {{- $label := .name | title }}
+    {{- if eq $icon_name "cv" }}{{- $label = "Resume" }}{{- end }}
+
+    {{- if eq $icon_name "cv" }}
+    <a href="{{ trim .url " " }}" download title="{{ $label }}">
+        {{ safeHTML (index $.svg $icon_name | default $.svg.default) }}
+        <span>{{ $label }}</span>
+    </a>
+    {{- else }}
+    <a href="{{ trim .url " " }}" {{- if not (hasPrefix .url "mailto:") }} target="_blank" rel="noopener noreferrer me"{{- end }} title="{{ $label }}">
+        {{ safeHTML (index $.svg $icon_name | default $.svg.default) }}
+        <span>{{ $label }}</span>
+    </a>
+    {{- end }}
+
+    {{- end }}
+</div>
