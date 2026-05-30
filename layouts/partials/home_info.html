@@ -12,8 +12,10 @@
 </article>
 {{- end }}
 
-{{- if fileExists "static/resume.png" }}
+{{- if fileExists "static/Ali_Raza_resume.pdf" }}
 <div class="resume-preview">
-  <img src="/resume.png" alt="Resume" class="resume-img" draggable="false">
+  <iframe src="/Ali_Raza_resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
+    style="width:100%; height:90vh; border:none; display:block;">
+  </iframe>
 </div>
 {{- end }}
