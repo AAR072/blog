@@ -27,7 +27,7 @@ params:
 
       These notes are created from my personal experiences and exploration.
 
-      For my web dev portfolio, visit [portfolio.aliakber.ca](https://portfolio.aliakber.ca).
+      For my web dev portfolio, visit <a href="https://portfolio.aliakber.ca">portfolio.aliakber.ca</a>.
 
   socialIcons:
     - name: linkedin
