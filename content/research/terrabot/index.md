@@ -63,6 +63,10 @@ The worm adds itself to the crontab, to ensure that it is always restarted if ki
 
 ![Commands for cron](cron.png)
 
+It then kills all competitors.
+
+![competitive.png](competitive.png)
+
 ## 2. ADB Attacks
 The worm generates a random public IPv4 address that is not a reserved IP.
 It then checks if each of these servers are up. If so, it attempts to make an ADB shell request.
