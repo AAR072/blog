@@ -1,6 +1,6 @@
 baseURL: "https://blog.aliakber.ca/"
 title: "Ali's Blog"
-paginate: 10
+pagination.pagerSize: 10
 theme: PaperModX
 
 enableInlineShortcodes: true
