@@ -1,5 +1,7 @@
 ---
-title: "Bypassing SameSite Cookie Protection on an Academic Platform via the Lax+2min Window"
+title: "Bypassing SameSite cookie protections on Chrome"
+slug: "bypassing-samesite-on-chrome"
+aliases: ["/research/childsmath-csrf-lax-2min-bypass/"]
 date: 2026-02-11
 tags: ["csrf", "samesite", "cookie", "web", "childsmath"]
 summary: "How Chrome's 'Lax + 2 minute' cookie intervention opened a CSRF window on ChildsMath, a math learning platform used by McMaster University students — letting an attacker silently redirect a student's grades to an attacker-controlled email."

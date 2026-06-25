@@ -1,5 +1,7 @@
 ---
-title: "One-Click Account Takeover via CSRF on Email Change Endpoint"
+title: "Account takeover on ReadWise"
+slug: "account-takeover-readwise"
+aliases: ["/research/one-click-ato-csrf-email-change/"]
 date: 2026-01-01
 tags: ["csrf", "ato", "account-takeover", "web"]
 summary: "A critical CSRF vulnerability in a popular reading platform's email change endpoint that required nothing more than a single click to fully hijack an account."

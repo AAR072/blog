@@ -1,5 +1,7 @@
 ---
-title: "CSRF to Stored XSS to Account Takeover on ChildsMath"
+title: "Account takeover on Childsmath"
+slug: "account-takeover-childsmath"
+aliases: ["/research/childsmath-csrf-stored-xss-ato/"]
 date: 2026-02-12
 tags: ["csrf", "xss", "stored-xss", "ato", "account-takeover", "web", "childsmath"]
 summary: "A CSRF vulnerability on ChildsMath's profile update endpoint that enabled stored XSS via unsanitized name fields — the injected script persisted across every page in the application, and the same request could change the recovery email to execute a full account takeover."

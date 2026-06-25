@@ -1,5 +1,5 @@
 ---
-title: "The Dangers of No-Code"
+title: "The dangers of No-Code"
 date: 2026-02-10
 tags: ["no-code", "base44", "vibecoding", "idor", "xss", "web"]
 summary: "A no-code BJJ tracker built on Base44 enforced all of its authorization in the browser. Here is the chain of six issues that let anyone with a browser read every user's data, deface the site, and take over accounts."
