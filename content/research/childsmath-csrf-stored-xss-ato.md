@@ -4,7 +4,7 @@ slug: "account-takeover-childsmath"
 aliases: ["/research/childsmath-csrf-stored-xss-ato/"]
 date: 2026-02-12
 tags: ["csrf", "xss", "stored-xss", "ato", "account-takeover", "web", "childsmath"]
-summary: "A CSRF vulnerability on ChildsMath's profile update endpoint that enabled stored XSS via unsanitized name fields — the injected script persisted across every page in the application, and the same request could change the recovery email to execute a full account takeover."
+summary: "A CSRF vulnerability on ChildsMath's profile update endpoint that enabled stored XSS via unsanitized name fields. The injected script persisted across every page in the application, and the same request could change the recovery email to execute a full account takeover."
 ---
 
 ## Target Context
@@ -17,7 +17,7 @@ This report focuses on the profile update page (`account.php`), which is only ac
 
 ## How I Found It
 
-I was already looking at the platform's CSRF posture (see my other post on the marks.php issue). The natural next thing to check was every other form that does something sensitive. Profile updates are always worth examining — they're often written once early in a project and never revisited for security.
+I was already looking at the platform's CSRF posture (see my other post on the marks.php issue). The natural next thing to check was every other form that does something sensitive. Profile updates are always worth examining. They're often written once early in a project and never revisited for security.
 
 I logged into a non-McMaster test account, navigated to the profile page, and updated my name while Burp was intercepting. The outgoing request:
 
@@ -35,7 +35,7 @@ ff_submit=Save
 
 No CSRF token. No custom headers. No re-authentication prompt.
 
-Same CSRF surface as the marks endpoint — the browser would send the session cookie with any cross-site POST, and since the cookie didn't have an explicit SameSite attribute, the 2-minute window applied here as well (though on Firefox and Safari it wasn't needed at all).
+Same CSRF surface as the marks endpoint: the browser would send the session cookie with any cross-site POST, and since the cookie didn't have an explicit SameSite attribute, the 2-minute window applied here as well (though on Firefox and Safari it wasn't needed at all).
 
 So the CSRF was there. But then I looked at what those fields actually did when the server processed them.
 
@@ -43,7 +43,7 @@ So the CSRF was there. But then I looked at what those fields actually did when 
 
 ## The XSS
 
-The `surname` and `given_name` fields are stored in the database and reflected back into the page. Specifically, they show up in the navigation bar — the persistent header element that appears on *every page* of the application after login.
+The `surname` and `given_name` fields are stored in the database and reflected back into the page. Specifically, they show up in the navigation bar, the persistent header element that appears on *every page* of the application after login.
 
 I asked myself the obvious question: is the output encoded?
 
@@ -55,7 +55,7 @@ John<script>alert(3.14159);</script>
 
 Reloaded the page. The alert fired.
 
-Then on the next page load — the alert fired again. And again. Because the name is displayed in the navbar on every route in the application, any JavaScript injected into that field executes on every single page the victim visits, indefinitely, until the field is overwritten.
+Then on the next page load, the alert fired again. And again. Because the name is displayed in the navbar on every route in the application, any JavaScript injected into that field executes on every single page the victim visits, indefinitely, until the field is overwritten.
 
 This is stored XSS. It doesn't require the victim to visit any specific URL. It's baked into their account.
 
@@ -101,17 +101,17 @@ One form submission does three things:
 2. **Changes the recovery email** to `hacker@attacker.com`. The attacker can now trigger a password reset and receive the link in their own inbox.
 3. **Locks the victim out** once the attacker completes the password reset.
 
-The whole initial delivery can be done through a 1x1 pixel popup window — it opens, submits the form, and closes in under a second. The victim might see a brief flash of a window, or nothing at all, depending on the browser.
+The whole initial delivery can be done through a 1x1 pixel popup window. It opens, submits the form, and closes in under a second. The victim might see a brief flash of a window, or nothing at all, depending on the browser.
 
 ---
 
 ## Why Stored XSS in the Navbar is Particularly Bad
 
-Stored XSS in a navbar is one of the more impactful placements possible. Most XSS is scoped — it triggers on a specific page that the victim has to be induced to visit. Navbar XSS is different:
+Stored XSS in a navbar is one of the more impactful placements possible. Most XSS is scoped. It triggers on a specific page that the victim has to be induced to visit. Navbar XSS is different:
 
 - **Persistent.** It runs on every page, including any sensitive pages like grade views, assignment submissions, or account settings.
 - **Silent.** The victim has no idea it's there from looking at the page.
-- **Self-propagating potential.** A script in the navbar can make fetch requests, read other form fields, exfiltrate data, or — in the right context — replicate itself by performing the same profile update on other users.
+- **Self-propagating potential.** A script in the navbar can make fetch requests, read other form fields, exfiltrate data, or in the right context replicate itself by performing the same profile update on other users.
 
 In an academic context, where students are logged in for entire study sessions clicking through many pages, this persistence window is large.
 
@@ -133,7 +133,7 @@ These two bugs independently are significant. Together, they chain into somethin
 
 **2. Output encoding.** Every user-supplied string that gets placed into HTML output must be encoded in context. For PHP, `htmlspecialchars($value, ENT_QUOTES, 'UTF-8')` on output, or a templating engine that escapes by default. The surname and given_name fields are the clear vectors here, but audit all user-controllable values in rendered output.
 
-**3. Re-authentication for sensitive changes.** Changing the recovery email should require entering the current password. Even if CSRF protection is somehow bypassed, the attacker doesn't know the victim's password — this would stop the account takeover leg of the attack.
+**3. Re-authentication for sensitive changes.** Changing the recovery email should require entering the current password. Even if CSRF protection is somehow bypassed, the attacker doesn't know the victim's password, so this would stop the account takeover leg of the attack.
 
 ---
 
