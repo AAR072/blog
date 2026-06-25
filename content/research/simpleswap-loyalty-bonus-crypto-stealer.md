@@ -1,7 +1,7 @@
 ---
 title: "A stupidly effective crypto stealer"
 date: 2026-06-25
-tags: ["malware", "crypto", "web-inject", "clickfix", "threat-intel"]
+tags: ["malware", "reverse-engineering", "crypto", "web-inject", "clickfix", "threat-intel"]
 summary: "A fake SimpleSwap 25% Loyalty Bonus exploit that talks you into installing a Tampermonkey userscript, then swaps the Bitcoin deposit address for the attacker's. Full walk of the delivery chain, the Google Sheets C2, the obfuscation, and the on-chain money trail."
 ---
 
