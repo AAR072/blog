@@ -30,6 +30,8 @@ params:
       For my web dev portfolio, visit <a href="https://portfolio.aliakber.ca">portfolio.aliakber.ca</a>.
 
   socialIcons:
+    - name: github
+      url: "https://github.com/AAR072"
     - name: linkedin
       url: "https://www.linkedin.com/in/aliakber-raza/"
     - name: email
