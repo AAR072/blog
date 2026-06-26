@@ -1,10 +1,20 @@
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 440px;
+}
+
 .social-icons a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 6px 14px;
+    margin: 0;
+    padding: 8px 14px;
     border: 1px solid var(--border);
     border-radius: 6px;
+    flex: 1 1 calc(50% - 5px);
 }
 
 .social-icons a svg {
@@ -17,13 +27,39 @@
     font-weight: 500;
 }
 
-.social-icons a:not(:last-of-type) {
-    margin-right: 10px;
-}
-
 .social-icons a:hover {
     box-shadow: none;
     background: var(--code-bg);
+}
+
+/* override theme's :not(:last-of-type) margin so the 50% flex basis holds */
+.social-icons a.social-icon {
+    margin: 0;
+}
+
+/* GitHub + Resume: two large buttons on the top row */
+.social-icons a.social-icon--github,
+.social-icons a.social-icon--cv {
+    order: 0;
+    padding: 16px 18px;
+}
+
+.social-icons a.social-icon--github span,
+.social-icons a.social-icon--cv span {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.social-icons a.social-icon--github svg,
+.social-icons a.social-icon--cv svg {
+    height: 28px;
+    width: 28px;
+}
+
+/* LinkedIn + Email: smaller buttons underneath */
+.social-icons a.social-icon--linkedin,
+.social-icons a.social-icon--email {
+    order: 1;
 }
 
 .resume-preview {
