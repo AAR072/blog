@@ -74,3 +74,8 @@
     width: 100%;
     height: auto;
 }
+
+/* Hide the "Ali's Blog" brand text in the header (keeps site title for SEO/RSS) */
+.nav .logo a[accesskey="h"] {
+    display: none;
+}
