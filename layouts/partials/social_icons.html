@@ -5,7 +5,7 @@
     {{- if eq $icon_name "cv" }}{{- $label = "Resume" }}{{- end }}
 
     {{- if eq $icon_name "cv" }}
-    <a class="social-icon social-icon--{{ $icon_name }}" href="{{ trim .url " " }}" download title="{{ $label }}">
+    <a class="social-icon social-icon--{{ $icon_name }}" href="{{ trim .url " " | absURL }}" download title="{{ $label }}">
         {{ safeHTML (index $.svg $icon_name | default $.svg.default) }}
         <span>{{ $label }}</span>
     </a>

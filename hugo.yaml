@@ -1,4 +1,4 @@
-baseURL: "https://blog.aliakber.ca/"
+baseURL: "https://research.aliakber.ca/"
 title: "Ali's Blog"
 timeZone: "Europe/Berlin"
 pagination.pagerSize: 10
