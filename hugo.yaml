@@ -1,6 +1,7 @@
 baseURL: "https://research.aliakber.ca/"
-title: "Ali's Blog"
-timeZone: "Europe/Berlin"
+title: "Ali Raza / Research"
+locale: "en-CA"
+timeZone: "America/Toronto"
 pagination.pagerSize: 10
 theme: PaperModX
 
@@ -10,7 +11,10 @@ enableEmoji: true
 
 params:
   env: production
-  defaultTheme: auto
+  author: "Ali Raza"
+  description: "Security research by Ali Raza: web vulnerabilities, malware investigations, and tools for understanding what I find."
+  mainSections: ["research"]
+  defaultTheme: dark
   DateFormat: "2006-01-02"
   ShowReadingTime: true
   ShowPostNavLinks: true
@@ -22,13 +26,9 @@ params:
   EnableImageZoom: true
 
   homeInfoParams:
-    Title: "Hi, I'm Ali"
+    Title: "Investigations & field notes."
     Content: |
-      A cybersecurity enthusiast, researcher, and CTF player.
-
-      These notes are created from my personal experiences and exploration.
-
-      For my web dev portfolio, visit <a href="https://portfolio.aliakber.ca">portfolio.aliakber.ca</a>.
+      I'm Ali, an application security engineer and security researcher. I investigate web vulnerabilities, reverse engineer malware, and build tools to understand what I find.
 
   socialIcons:
     - name: github
@@ -45,12 +45,15 @@ minify:
 
 menu:
   main:
-    - name: Research
+    - name: Writing
       url: /research/
       weight: 1
-    - name: CTFs
-      url: /ctfs/
+    - name: Tools
+      url: /tools/
       weight: 2
+    - name: About
+      url: /about/
+      weight: 3
 
 outputs:
   home:

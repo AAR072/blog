@@ -1,0 +1,12 @@
+<script>
+  (() => {
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) toggle.setAttribute('aria-label', 'Toggle color theme');
+
+    // Match the theme's sidebar breakpoint; mobile contents stay collapsible.
+    const contents = document.querySelector('.toc.side details');
+    if (contents && window.matchMedia('(min-width: 1350px)').matches) {
+      contents.open = true;
+    }
+  })();
+</script>

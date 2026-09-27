@@ -1,21 +1,11 @@
 {{- with site.Params.homeInfoParams }}
-<article class="first-entry home-info">
-  <header class="entry-header">
-    <h1>{{ .Title | markdownify }}</h1>
-  </header>
-  <section class="entry-content">
-    {{- trim .Content "\n" | markdownify -}}
-  </section>
-  <footer class="entry-footer">
-    {{- partial "social_icons.html" (dict "icons" site.Params.socialIcons "svg" $.Site.Data.svg "MaskedEmail" site.Params.MaskedEmail "Email" site.Params.Email) -}}
-  </footer>
-</article>
-{{- end }}
-
-{{- if fileExists "static/Ali_Raza_resume.pdf" }}
-<div class="resume-preview">
-  <iframe src="{{ "Ali_Raza_resume.pdf" | absURL }}#toolbar=0&navpanes=0&scrollbar=0"
-    style="width:100%; height:90vh; border:none; display:block;">
-  </iframe>
-</div>
+<header class="research-intro">
+  <h1>{{ .Title }}</h1>
+  <div class="intro-copy">{{ .Content | markdownify }}</div>
+  <nav class="profile-links" aria-label="Find Ali online">
+    <a href="https://github.com/AAR072" rel="me">GitHub</a>
+    <a href="mailto:aliakberraza7@gmail.com">Email</a>
+    <a href="{{ "Ali_Raza_resume.pdf" | relURL }}">Résumé</a>
+  </nav>
+</header>
 {{- end }}

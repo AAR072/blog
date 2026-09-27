@@ -1,0 +1,49 @@
+{{ define "main" }}
+{{ partial "home_info.html" . }}
+{{ $featuredPaths := slice "/research/vidar-stealer-3-2" "/research/simpleswap-loyalty-bonus-crypto-stealer" }}
+{{ $featured := slice }}
+<section class="selected-research" aria-labelledby="selected-heading">
+  <div class="section-heading">
+    <h2 id="selected-heading">Selected investigations</h2>
+    <span>A place to start</span>
+  </div>
+  <div class="selected-grid">
+    {{ range $featuredPaths }}
+      {{ with site.GetPage . }}
+        {{ $featured = $featured | append . }}
+        <article class="selected-card">
+          {{ if eq .File.ContentBaseName "vidar-stealer-3-2" }}
+          <p class="eyebrow">Reverse engineering · Tooling</p>
+          {{ else }}
+          <p class="eyebrow">Scam investigation</p>
+          {{ end }}
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ if eq .File.ContentBaseName "vidar-stealer-3-2" }}
+          <p>Inside Vidar's configuration and communications, with an offline toolkit built from the analysis.</p>
+          {{ else }}
+          <p>A spam comment leads to a fake bonus, a malicious userscript, and a payload hosted in Google Sheets.</p>
+          {{ end }}
+          <div class="research-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time><span>{{ .ReadingTime }} min read</span></div>
+        </article>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
+<section class="research-archive" aria-labelledby="more-heading">
+  <div class="section-heading">
+    <h2 id="more-heading">More research</h2>
+    <a href="{{ "research/" | relURL }}">All writing <span aria-hidden="true">↗</span></a>
+  </div>
+  {{ $pages := where site.RegularPages "Section" "in" site.Params.mainSections }}
+  {{ $pages = where $pages "Params.hidden" "!=" true }}
+  {{ range first 5 (complement $featured $pages.ByDate.Reverse) }}
+  <article class="research-row">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+    <div>
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <p>{{ .Summary | plainify | htmlUnescape }}</p>
+    </div>
+  </article>
+  {{ end }}
+</section>
+{{ end }}
